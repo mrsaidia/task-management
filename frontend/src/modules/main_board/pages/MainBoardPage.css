@@ -1,0 +1,51 @@
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.sticky-board-title {
+  background-color: #fbfcfd;
+  width: 100%;
+}
+
+.board-title {
+  /* display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center; */
+  margin: 20px 0 20px 0;
+  width: 100%;
+}
+
+.board-title .title-text {
+  font-size: 30px;
+  font-weight: 500;
+  color: black;
+}
+
+.board-title .ant-btn-primary {
+  background-color: #e2edf9;
+  color: #2f56de;
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board-title .ant-btn-text {
+  color: #989898;
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ant-card-body .card {
+  background-color: #f1f5f9;
+}
+
+.card {
+  width: fit-content;
+}

@@ -1,0 +1,29 @@
+.main-container {
+    background-color: #fbfcfd;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    border-radius: 30px;
+    border: 1px solid #DBDBDB;
+    background-color: #ffffff;
+    width: 50%;
+    padding: 20px;
+}
+
+.ant-input {
+    font-family: "Lexend" !important;
+}
+
+.login-label {
+    color: #000;
+    font-family: "Lexend";
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    align-self: center;
+}

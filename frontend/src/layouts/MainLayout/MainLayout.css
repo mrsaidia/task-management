@@ -1,0 +1,37 @@
+.sider {
+  background: #fff !important;
+  height: 100vh;
+  position: sticky !important;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.sider-header {
+  margin: 30px 18px;
+}
+
+.menu {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ant-menu-title-content {
+  color: #d4d2ee !important;
+  font-size: 1.15rem;
+}
+
+.ant-menu-item-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.ant-menu-item-selected {
+  background-color: transparent !important;
+}
+
+.ant-menu-item-active {
+  background-color: #eef1f3d0 !important;
+}

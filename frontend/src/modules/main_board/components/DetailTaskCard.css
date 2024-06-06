@@ -1,0 +1,47 @@
+.task-label {
+    color: #171A1F;
+    font-family: "Lexend";
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 48px;
+}
+
+.information-label {
+    color: #989898;
+    font-family: "Lexend";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; 
+    width: 100px;
+}
+
+.dropdown-status {
+    width: 50%;
+}
+
+.save-button {
+    border-radius: 12px;
+    background: var(--keykey, #2F56DE);
+    color: #FFF;
+    text-align: center;
+    font-family: "Lexend";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.delete-button {
+    border-radius: 12px;
+    background: var(--keykey, #E05858);
+    color: #FFF;
+    text-align: center;
+    font-family: "Lexend";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+

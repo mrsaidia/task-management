@@ -1,0 +1,13 @@
+.status-container {
+  width: 25%;
+  background: #fdf8ea;
+  border-radius: 40px;
+  margin: 30px 0;
+  padding: 30px;
+}
+.status {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 25px;
+  white-space: nowrap;
+}

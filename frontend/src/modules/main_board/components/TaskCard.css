@@ -1,0 +1,74 @@
+.task {
+  width: 100%;
+  height: fit-content;
+  background: #ffffff;
+  overflow: visible auto;
+  border-radius: 20px;
+  padding: 20px 16px;
+}
+.task-title {
+  color: #171a1f;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 18.75px;
+
+  white-space: nowrap;
+}
+
+.frame-2f {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  gap: 10px;
+  position: relative;
+  width: 54px;
+  padding: 4px 8px 4px 8px;
+  cursor: pointer;
+  background: #f0f0ff;
+  border: none;
+  z-index: 70;
+  overflow: hidden;
+  border-radius: 1000px;
+}
+.behance {
+  height: 11px;
+  color: #1010d5;
+  font-size: 9px;
+  font-weight: 400;
+  text-align: left;
+  white-space: nowrap;
+}
+.frame-30 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 41px;
+  cursor: pointer;
+  background: #e6feeb;
+  border: none;
+  overflow: hidden;
+  border-radius: 1000px;
+}
+.label {
+  color: #43cb5b;
+  font-size: 9px;
+  font-weight: 400;
+  line-height: 11px;
+  white-space: nowrap;
+}
+
+.date {
+  color: #979797;
+  font-size: 8px;
+  font-weight: 400;
+  line-height: 10px;
+  white-space: nowrap;
+}
+
+.ant-drawer-content-wrapper,
+.ant-drawer-content {
+  border-top-left-radius: 24px;
+  border-bottom-left-radius: 24px;
+}

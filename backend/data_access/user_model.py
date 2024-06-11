@@ -33,6 +33,9 @@ def login(user_info):
 
     user = db.user.find_one(query)
 
+    if user is None:
+        return {"message": "Find failed"}
+    
     hashed_password = bcrypt.kdf(password = user_info.password.encode('utf8'), salt = user.get("salt"), desired_key_bytes = 512, rounds = 100)
 
     if (user.get("hashed_password") == hashed_password):

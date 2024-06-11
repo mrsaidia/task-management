@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 axios.interceptors.request.use(
   function (config) {
     config.headers["Content-Type"] = 'application/json'
-    config.baseURL = "http://localhost:5000/";
+    config.baseURL = "http://127.0.0.1:5000/";
 
     return config;
   },

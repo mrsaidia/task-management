@@ -15,12 +15,10 @@ const { Header, Sider, Content } = Layout;
 import "./MainLayout.css";
 import Item from "antd/es/list/Item";
 import AppHeader from "./AppHeader";
-import { useNavigate } from "react-router-dom";
 
 const MainLayout = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [selectedItem, setSelectedItem] = useState("1");
-  let navigate = useNavigate();
 
   return (
     <Layout>
@@ -129,9 +127,6 @@ const MainLayout = ({ children }) => {
                   Board
                 </span>
               ),
-              onClick: () => {
-                return navigate("/");
-              },
             },
             {
               key: "2",
@@ -162,9 +157,6 @@ const MainLayout = ({ children }) => {
                   Calendar
                 </span>
               ),
-              onClick: () => {
-                return navigate("/calendar");
-              },
             },
             {
               key: "3",
@@ -203,7 +195,7 @@ const MainLayout = ({ children }) => {
                 </span>
               ),
               onClick: () => {
-                return navigate("/setting");
+                console.log("Setting");
               },
             },
           ]}

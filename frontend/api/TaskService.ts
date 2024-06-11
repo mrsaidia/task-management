@@ -1,27 +1,30 @@
 import HttpService from "./HttpService";
 
 class TaskService {
-  createTask(requestParams) {
-    return HttpService.Post("/task", requestParams);
-  }
+    createTask(requestParams) {
+        const jwtToken = JSON.parse(localStorage.getItem("jwtToken")!);
 
-  getTaskPagination(requestParams) {
-    const queryString = `?page=${requestParams.page}&limit=${requestParams.limit}`;
-    return HttpService.Get(`/task${queryString}`);
-  }
+        return HttpService.Post("/task", requestParams, {headers: {Authorization: `Bearer ${jwtToken}`}});
+    }
 
-  getTaskByMonth(requestParams) {
-    const queryString = `?startDate=${requestParams.startDate}&endDate=${requestParams.endDate}`;
-    return HttpService.Get(`/calendar${queryString}`);
-  }
+    getTaskPagination(requestParams) {
+        const jwtToken = JSON.parse(localStorage.getItem("jwtToken")!);
 
-  updateTask(requestParams) {
-    return HttpService.Patch("/task", requestParams);
-  }
+        const queryString = `?page=${requestParams.page}&limit=${requestParams.limit}`
+        return HttpService.Get(`/task${queryString}`, {headers: {Authorization: `Bearer ${jwtToken}`}});
+    }
 
-  deleteTask(requestParams) {
-    return HttpService.Delete(`/task?id=${requestParams}`);
-  }
+    updateTask(requestParams) {
+        const jwtToken = JSON.parse(localStorage.getItem("jwtToken")!);
+
+        return HttpService.Patch("/task", requestParams, {headers: {Authorization: `Bearer ${jwtToken}`}});
+    }
+
+    deleteTask(requestParams) {
+        const jwtToken = JSON.parse(localStorage.getItem("jwtToken")!);
+
+        return HttpService.Delete(`/task?id=${requestParams}`, {headers: {Authorization: `Bearer ${jwtToken}`}});
+    }
 }
 
-export default new TaskService();
+export default new TaskService()

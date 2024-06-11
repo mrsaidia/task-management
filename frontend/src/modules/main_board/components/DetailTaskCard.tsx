@@ -236,7 +236,6 @@ const DetailTaskCard = ({ task, onSaveOrDelete }) => {
           <p className="information-label">Due Date</p>
         </Flex>
         <DatePicker
-          showTime
           format={DefaultDateFormat}
           variant="borderless"
           style={{ padding: 0 }}

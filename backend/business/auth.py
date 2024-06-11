@@ -34,9 +34,9 @@ class LoginUserApi(Resource):
         args = self.login_reqparse.parse_args()
         result = login(args)
 
-        if result.get("message")  == "Username or password is not correct":
+        if result.get("message")  == "Find failed":
             return {"message": result.get("message")}, 400
         
         token = create_access_token(identity = result.get("username"))
 
-        return {"token": token, "message": "Login success"}, 200
+        return {"token": token, "message": "Register success"}, 200

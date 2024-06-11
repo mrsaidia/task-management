@@ -38,7 +38,7 @@ const MainBoardPage = () => {
       getTasks(getRequestParams);
     }
   }, [isFetching]);
-
+  
   function onScroll() {
     if (
       window.innerHeight + Math.round(document.documentElement.scrollTop) ===
@@ -53,17 +53,19 @@ const MainBoardPage = () => {
     TaskService.getTaskPagination(requestParams).then((result) => {
       setLoading(false);
       if (result.status === HttpStatusCode.Ok) {
-        setListTask((oldListTask) => oldListTask.concat(result.data["tasks"]));
+        setListTask((oldListTask) =>
+          oldListTask.concat(result.data["tasks"])
+        );
         setIsFetching(false);
         setGetRequestParams((prev) => ({ ...prev, page: prev.page++ }));
       }
-    });
+    });    
   }
 
   function onSaveOrDelete() {
     setListTask([]);
-    setGetRequestParams({ page: 1, limit: 10 });
-    getTasks({ page: 1, limit: 10 });
+    setGetRequestParams({page: 1, limit: 10});
+    getTasks({page: 1, limit: 10});
   }
 
   return (
@@ -162,8 +164,8 @@ const MainBoardPage = () => {
               (element) => element.status === TaskStatus.OnApproval
             )}
             status="On Approval"
-            backgroundColor="#FAEDF5"
-            titleColor="#D2399C"
+            backgroundColor="#E6FEEB"
+            titleColor="#43CB5B"
             onSaveOrDelete={() => onSaveOrDelete()}
           />
           <StatusContainer
@@ -171,8 +173,8 @@ const MainBoardPage = () => {
               (element) => element.status === TaskStatus.Completed
             )}
             status="Completed"
-            backgroundColor="#E6FEEB"
-            titleColor="#43CB5B"
+            backgroundColor="#FAEDF5"
+            titleColor="#D2399C"
             onSaveOrDelete={() => onSaveOrDelete()}
           />
         </Flex>

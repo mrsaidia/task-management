@@ -8,10 +8,6 @@ class UserService {
     login(requestParams) {
         return HttpService.Post("/login", requestParams);
     }
-
-    changePassword(requestParams) {
-        return HttpService.Post("/change_password", requestParams);
-    }
 }
 
 export default new UserService()

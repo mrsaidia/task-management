@@ -15,7 +15,10 @@ import { DownloadOutlined, LoadingOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import UserService from "../../../../api/UserService";
 import { HttpStatusCode } from "axios";
-import { changeUserAuthentication } from "../../../redux/AuthSlice";
+import {
+  changeJWTToken,
+  changeUserAuthentication,
+} from "../../../redux/AuthSlice";
 import { useDispatch } from "react-redux";
 
 const LoginPage = () => {
@@ -52,7 +55,7 @@ const LoginPage = () => {
         .then((result) => {
           if (result.status === HttpStatusCode.Ok) {
             dispatch(changeUserAuthentication(true));
-            localStorage.setItem("jwtToken", JSON.stringify(result.data.token));
+            dispatch(changeJWTToken(result.data.token));
             const modal = Modal.confirm({
               icon: null,
               title: null,
@@ -79,7 +82,7 @@ const LoginPage = () => {
           setIsDisabledLogin(false);
         })
         .catch((error) => {
-          if (error.response.data.message === "Find failed") {
+          if (error.response.data.message === "Password is not correct") {
             messageApi.open({
               type: "error",
               content: `Login failed because username or password is not correct`,

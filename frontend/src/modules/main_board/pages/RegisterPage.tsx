@@ -1,12 +1,25 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./RegisterPage.css";
-import { Affix, Button, Card, Flex, Input, Modal, Spin, message, Image } from "antd";
+import {
+  Affix,
+  Button,
+  Card,
+  Flex,
+  Input,
+  Modal,
+  Spin,
+  message,
+  Image,
+} from "antd";
 import { DownloadOutlined, LoadingOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import UserService from "../../../../api/UserService";
 import { HttpStatusCode } from "axios";
 import { useDispatch } from "react-redux";
-import { changeUserAuthentication } from "../../../redux/AuthSlice";
+import {
+  changeJWTToken,
+  changeUserAuthentication,
+} from "../../../redux/AuthSlice";
 
 const RegisterPage = () => {
   let navigate = useNavigate();
@@ -33,47 +46,49 @@ const RegisterPage = () => {
     if (!inputValue.username || !inputValue.password) {
       messageApi.open({
         type: "error",
-        content: "You have not input enought field, please check again"
-      })
+        content: "You have not input enought field, please check again",
+      });
     } else {
       setLoading(true);
       setIsDisabledRegister(true);
-      UserService.register(inputValue).then((result) => {
-        if (result.status === HttpStatusCode.Ok) {
-          dispatch(changeUserAuthentication(true));
-          localStorage.setItem("jwtToken", JSON.stringify(result.data.token));
-          const modal = Modal.confirm({
-            icon: null,
-            title: null,
-            content: (
-              <Flex gap={20} justify="center" vertical>
-                <Image src="/Done.png" preview={false}></Image>
-                <p className="modal-title">Register Succesfully!</p>
-              </Flex>
-            ),
-            footer: (
-              <Button
-                className="modal-confirm-btn"
-                onClick={() => {
-                  modal.destroy();
-                  return navigate("/");
-                }}
-              >
-                Continue
-              </Button>
-            ),
+      UserService.register(inputValue)
+        .then((result) => {
+          if (result.status === HttpStatusCode.Ok) {
+            dispatch(changeUserAuthentication(true));
+            dispatch(changeJWTToken(result.data.token));
+            const modal = Modal.confirm({
+              icon: null,
+              title: null,
+              content: (
+                <Flex gap={20} justify="center" vertical>
+                  <Image src="/Done.png" preview={false}></Image>
+                  <p className="modal-title">Register Succesfully!</p>
+                </Flex>
+              ),
+              footer: (
+                <Button
+                  className="modal-confirm-btn"
+                  onClick={() => {
+                    modal.destroy();
+                    return navigate("/");
+                  }}
+                >
+                  Continue
+                </Button>
+              ),
+            });
+            setLoading(false);
+            setIsDisabledRegister(false);
+          }
+        })
+        .catch((err) => {
+          messageApi.open({
+            type: "error",
+            content: `Register failed because ${err.response.data.message}`,
           });
           setLoading(false);
           setIsDisabledRegister(false);
-        }
-      }).catch((err) => {
-        messageApi.open({
-          type: "error",
-          content: `Register failed because ${err.response.data.message}`
-        })
-        setLoading(false);
-        setIsDisabledRegister(false);
-      });
+        });
     }
   };
 

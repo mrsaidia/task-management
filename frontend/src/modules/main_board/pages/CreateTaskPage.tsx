@@ -22,7 +22,7 @@ import {
   InboxOutlined,
   PlusOutlined,
 } from "@ant-design/icons";
-import TaskService from "../../../../api/TaskService";
+import TaskService from "../../../../api/TaskService.js";
 import Dragger from "antd/es/upload/Dragger";
 import TextArea from "antd/es/input/TextArea";
 import dayjs from "dayjs";
@@ -233,8 +233,8 @@ const CreateTaskPage = () => {
                   />
                 </svg>
                 <Flex vertical>
-                  <p className="form-lable">General Infor</p>
-                  <p className="form-description">Nisi laborum eiusmod</p>
+                  <p className="form-lable">Task Information</p>
+                  <p className="form-description">Please input all field</p>
                 </Flex>
               </Flex>
               <Flex vertical className="form-input-group">
@@ -274,6 +274,7 @@ const CreateTaskPage = () => {
                       Start date
                     </label>
                     <DatePicker
+                      showTime
                       format={DefaultDateFormat}
                       className="input-field"
                       placeholder="5-14-2024"
@@ -307,6 +308,7 @@ const CreateTaskPage = () => {
                       Due date
                     </label>
                     <DatePicker
+                      showTime
                       format={DefaultDateFormat}
                       className="input-field"
                       placeholder="5-14-2024"

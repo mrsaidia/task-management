@@ -1,4 +1,4 @@
-from data_access.task_model import delete_task, save_task, get_task_pagination, update_task
+from data_access.task_model import delete_task, get_task_by_month, save_task, get_task_pagination, update_task
 from flask import jsonify
 from flask_restful import Resource, Api,marshal_with, fields, reqparse
 from flask_jwt_extended import jwt_required, get_jwt_identity
@@ -69,3 +69,16 @@ class TaskApi(Resource):
             }, 500
         
         return {"message":"Delete success"}, 200
+    
+class CalendarApi(Resource):
+    decorators = [jwt_required()]
+    def __init__(self):
+        self.get_task = reqparse.RequestParser()
+        self.get_task.add_argument('startDate', type = int, location='args')
+        self.get_task.add_argument('endDate', type = int, location='args')
+    
+    def get(self):
+        data = self.get_task.parse_args()
+        current_user = get_jwt_identity()
+
+        return jsonify (get_task_by_month(data, current_user))

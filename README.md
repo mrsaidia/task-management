@@ -7,11 +7,16 @@
 
 > .venv/Scripts/activate
 
+For MACOS
+> source venv/scripts/activate
+
 > pip3 install -r requirements.txt
 
 - To run: (Have to activate it first before run the app: using command .venv/Scripts/activate)
 > py app.py
 
+For MACOS
+> python3 app.py
 ## Frontend:
 
 - Install: run this command

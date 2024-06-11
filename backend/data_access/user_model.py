@@ -33,12 +33,44 @@ def login(user_info):
 
     user = db.user.find_one(query)
 
+    if user is None:
+        return {"message": "Username or password is not correct"}
+
     hashed_password = bcrypt.kdf(password = user_info.password.encode('utf8'), salt = user.get("salt"), desired_key_bytes = 512, rounds = 100)
 
     if (user.get("hashed_password") == hashed_password):
         return {"username": user.get("username"), "message": "Find user"}
     
-    return {"message": "Find failed"}
+    return {"message": "Username or password is not correct"}
+
+def change_password(user_info):
+    query = {
+        "username": user_info.username
+    }
+
+    user = db.user.find_one(query)
+
+    if user is None:
+        return {"message": "Find failed"}
+    
+    hashed_password = bcrypt.kdf(password = user_info.oldPassword.encode('utf8'), salt = user.get("salt"), desired_key_bytes = 512, rounds = 100)
+
+    if (user.get("hashed_password") == hashed_password):
+        new_salt = bcrypt.gensalt()
+        new_hashed = bcrypt.kdf(password = user_info.newPassword.encode('utf8'), salt = new_salt, desired_key_bytes = 512, rounds = 100)
+
+        user_data = {
+            "salt": new_salt,
+            "hashed_password": new_hashed
+        }
+
+        update_data = {
+            "$set": dict(user_data)
+        }
+
+        return db.user.update_one(query, update_data)
+    
+    return {"message": "Password is not correct"}
 
 
 

@@ -32,6 +32,37 @@ def get_task_pagination(pagination, user):
     }
     return response
 
+def get_task_by_month(info, user):
+    query = {
+        "$and": [
+            {
+                "$or": [
+                {
+                    "start_date": {
+                        "$gte": info.startDate,
+                        "$lt": info.endDate
+                    }
+                },
+                {
+                    "end_date": {
+                        "$gte": info.startDate,
+                        "$lt": info.endDate
+                    }
+                },
+            ]
+            },
+            { "username": user }
+        ]
+    }
+
+    fetch_tasks = db.task.find(query)
+    tasks_fetched = list(json.loads(json_util.dumps(fetch_tasks)))
+
+    response = {
+        'tasks': tasks_fetched
+    }
+    return response
+
 def update_task(task):
     query = {
         "_id": ObjectId(task.id),
